@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Remove Posts</h3>
+<p>
+    <a th:href="@{/posts}">
+        Back to posts list
+    </a>
+</p>
+<div id="form">
+    <form action="#" th:action="@{/posts/delete}" th:object="${posts}"
+          method="POST" novalidate="novalidate">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label>Title</label>
+            <input type="text" th:field="*{title}"/>
+        </div>
+        <div>
+            <label>Content</label>
+            <input type="email" th:field="*{content}"/>
+        </div>
+        <div>
+            <label>Created_date</label>
+            <input type="text" th:field="*{created_date}"/>
+        </div>
+        <input type="submit" value="Remove"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

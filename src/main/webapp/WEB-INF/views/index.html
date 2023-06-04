@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+<h3>Posts</h3>
+<p>
+    <a th:href="@{/posts/create}">
+        Add new posts
+    </a>
+</p>
+
+<table id = "customers">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Created_date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${posts}">
+        <td th:text="${row.getTitle()}"></td>
+        <td th:text="${row.getContent()}"></td>
+        <td th:text="${row.getCreated_date()}"></td>
+        <td><a th:href="@{/posts/{id}/edit(id=${row.getId()})}">edit</a></td>
+        <td><a th:href="@{/posts/{id}/delete(id=${row.getId()})}">delete</a></td>
+        <td><a th:href="@{/posts/{id}/view(id=${row.getId()})}">view</a></td>
+    </tr>
+    </tbody>
+    <a th:href="@{/posts}">
+        Back to posts list
+    </a>
+    <div class="notify">
+        <div th:if="${success}">
+            <span th:text="${success}"></span>
+        </div>
+    </div>
+</table>
+<footer th:insert="/layout::footer"></footer>
+</body>
+</html>
